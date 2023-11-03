@@ -14,7 +14,7 @@ keywords = ["podman", "api", "containers", "docker", "unix"]
 [dependencies]
 podman-api-stubs = "0.9"
 
-containers-api = { git = "https://github.com/pbzweihander/containers-api.git", rev = "e89af0ab10870b1363a8b49e86a0ae2d5504dd9d" }
+containers-api = { git = "https://github.com/pbzweihander/containers-api.git", rev = "ad57d813b1a593abf0f13932dfa3d854737069ab" }
 
 log = "0.4"
 thiserror = "1"
