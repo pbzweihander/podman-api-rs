@@ -1,3 +1,5 @@
+use base64::engine::general_purpose::URL_SAFE;
+use base64::Engine;
 use containers_api::opts::{Filter, FilterItem};
 use containers_api::{
     impl_filter_func, impl_map_field, impl_opts_builder, impl_opts_required_builder,
@@ -114,7 +116,7 @@ impl ImageBuildOptsBuilder {
         S: Into<String>,
     {
         self.params.insert(
-            "cachefrom",
+            "cachefrom".to_string(),
             serde_json::to_string(&images.into_iter().map(|i| i.into()).collect::<Vec<_>>())
                 .unwrap_or_default(),
         );
@@ -199,7 +201,8 @@ impl ImageBuildOptsBuilder {
     );
 
     pub fn platform(mut self, platform: Platform) -> Self {
-        self.params.insert("platform", platform.to_string());
+        self.params
+            .insert("platform".to_string(), platform.to_string());
         self
     }
 
@@ -385,7 +388,7 @@ impl RegistryAuth {
     /// serialize authentication as JSON in base64
     pub fn serialize(&self) -> String {
         serde_json::to_string(self)
-            .map(|c| base64::encode_config(c, base64::URL_SAFE))
+            .map(|c| URL_SAFE.encode(c))
             .unwrap_or_default()
     }
 }

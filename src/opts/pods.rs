@@ -75,7 +75,7 @@ impl_opts_builder!(url =>
 impl PodTopOpts {
     pub(crate) fn stream(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", true.to_string());
+        new.params.insert("stream".to_string(), true.to_string());
         new
     }
 }
@@ -101,7 +101,7 @@ impl_opts_builder!(url =>
 impl PodStatsOpts {
     pub(crate) fn stream(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", true.to_string());
+        new.params.insert("stream".to_string(), true.to_string());
         new
     }
 }

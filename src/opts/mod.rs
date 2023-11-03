@@ -50,7 +50,7 @@ impl EventsOptsBuilder {
     pub fn filters(mut self, filters: impl IntoIterator<Item = EventsConstraint>) -> Self {
         let filters: std::collections::HashMap<_, _> = filters.into_iter().collect();
         self.params.insert(
-            "filters",
+            "filters".to_string(),
             serde_json::to_string(&filters).unwrap_or_default(),
         );
         self

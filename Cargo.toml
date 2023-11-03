@@ -13,24 +13,21 @@ keywords = ["podman", "api", "containers", "docker", "unix"]
 
 [dependencies]
 podman-api-stubs = "0.9"
-#podman-api-stubs = { path = "./podman-api-stubs/lib" }
 
-containers-api = "0.9"
-#containers-api = { git = "https://github.com/vv9k/containers-api" }
-#containers-api = { path = "../containers-api" }
+containers-api = { git = "https://github.com/pbzweihander/containers-api.git", rev = "e89af0ab10870b1363a8b49e86a0ae2d5504dd9d" }
 
 log = "0.4"
 thiserror = "1"
 
-base64 = "0.13"
+base64 = "0.21.5"
 byteorder = "1.4"
 bytes = "1"
 
 paste = "1"
 
-chrono = { version="0.4", optional=true, features=["serde"] }
+chrono = { version = "0.4", optional = true, features = ["serde"] }
 
-serde = { version="1", features=["derive"] }
+serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
 url = "2.1"
@@ -42,16 +39,16 @@ tar = "0.4"
 flate2 = "1"
 
 [dev-dependencies]
-env_logger = "0.8"
+env_logger = "0.10.0"
 # Required for examples to run
-pretty_assertions = "0.7"
+pretty_assertions = "1.4.0"
 tokio = { version = "1", features = ["macros"] }
 futures-util = "0.3"
 tempdir = "0.3"
-gethostname = "0.2"
+gethostname = "0.4.3"
 
 [target.'cfg(unix)'.dev-dependencies]
-nix = "0.25"
+nix = { version = "0.27.1", features = ["user"] }
 
 [features]
 default = ["chrono"]

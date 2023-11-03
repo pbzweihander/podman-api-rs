@@ -153,7 +153,7 @@ impl_opts_builder!(url =>
 impl ContainerCheckpointOpts {
     pub(crate) fn for_export(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("export", true.to_string());
+        new.params.insert("export".to_string(), true.to_string());
         new
     }
 }
@@ -218,7 +218,8 @@ impl_opts_builder!(url =>
 impl ContainerCommitOpts {
     pub(crate) fn for_container(&self, container: crate::Id) -> Self {
         let mut new = self.clone();
-        new.params.insert("container", container.to_string());
+        new.params
+            .insert("container".to_string(), container.to_string());
         new
     }
 }
@@ -271,7 +272,7 @@ impl ContainerWaitOptsBuilder {
         conditions: impl IntoIterator<Item = models::ContainerStatus>,
     ) -> Self {
         self.vec_params.insert(
-            "condition",
+            "condition".to_string(),
             conditions.into_iter().map(|c| c.as_ref().into()).collect(),
         );
         self
@@ -1068,7 +1069,7 @@ impl_opts_builder!(url =>
 impl ContainerAttachOpts {
     pub(crate) fn stream(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", true.to_string());
+        new.params.insert("stream".to_string(), true.to_string());
         new
     }
 }
@@ -1145,13 +1146,13 @@ impl_opts_builder!(url =>
 impl ContainerStatsOpts {
     pub(crate) fn oneshot(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", false.to_string());
+        new.params.insert("stream".to_string(), false.to_string());
         new
     }
 
     pub(crate) fn stream(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", true.to_string());
+        new.params.insert("stream".to_string(), true.to_string());
         new
     }
 }
@@ -1176,13 +1177,13 @@ impl_opts_builder!(url =>
 impl ContainerTopOpts {
     pub(crate) fn oneshot(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", false.to_string());
+        new.params.insert("stream".to_string(), false.to_string());
         new
     }
 
     pub(crate) fn stream(&self) -> Self {
         let mut new = self.clone();
-        new.params.insert("stream", true.to_string());
+        new.params.insert("stream".to_string(), true.to_string());
         new
     }
 }

@@ -203,14 +203,16 @@ impl NetworkConnectOptsBuilder {
         I: IntoIterator<Item = u8>,
     {
         let ips: Vec<Vec<_>> = ips.into_iter().map(|a| a.into_iter().collect()).collect();
-        self.params.insert("static_ips", serde_json::json!(ips));
+        self.params
+            .insert("static_ips".to_string(), serde_json::json!(ips));
         self
     }
 
     /// Static mac for the container.
     pub fn static_mac(mut self, mac: impl IntoIterator<Item = u8>) -> Self {
         let mac: Vec<_> = mac.into_iter().collect();
-        self.params.insert("static_mac", serde_json::json!(mac));
+        self.params
+            .insert("static_mac".to_string(), serde_json::json!(mac));
         self
     }
 }
@@ -218,8 +220,10 @@ impl NetworkConnectOptsBuilder {
 impl NetworkConnectOpts {
     pub(crate) fn for_container(&self, container: &crate::Id) -> Self {
         let mut new = self.clone();
-        new.params
-            .insert("container", Value::String(container.to_string()));
+        new.params.insert(
+            "container".to_string(),
+            Value::String(container.to_string()),
+        );
         new
     }
 }

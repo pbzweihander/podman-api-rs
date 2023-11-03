@@ -62,7 +62,7 @@ impl ExecCreateOptsBuilder {
         V: AsRef<str>,
     {
         self.params.insert(
-            "Env",
+            "Env".to_string(),
             vars.into_iter()
                 .map(|(k, v)| format!("{}={}", k.as_ref(), v.as_ref()))
                 .collect(),
